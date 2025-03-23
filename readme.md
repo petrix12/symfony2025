@@ -34,7 +34,13 @@
     ```bash
     symfony new nombre_del_proyecto --no-git
     ```
-3. Indicar de se leeran los controladores y se mapearan las rutas:
+
++ Ejecutar la consola de symfony (**movies/bin/console**):
+    ```bash
+    php bin/console
+    symfony console
+    ```    
++ Indicar de se leeran los controladores y se mapearan las rutas:
     ```yml title="movies/config/routes.yaml"
     controllers:
         resource:
@@ -50,18 +56,31 @@
         ```yml
         type: attribute
         ```
-4. Punto de entrada a la aplicación:
++ Punto de entrada a la aplicación:
     + movies/public/index.php
++ Rutas disponibles:
+    ```bash
+    symfony console debug:router
+    ```
++ Versión de symfony:
+    ```bash
+    php bin/console about
+    symfony console about
+    ```
++ Ejecutar proyecto:
+    ```bash
+    symfony serve -d
+    ```
++ Para proyecto:
+    ```bash
+    symfony serve:stop
+    ```
 
 
 ## Ejemplo de un proyecto con un CRUD
 1. Creación:
     ```bash
     symfony new movies --no-git
-    ```
-2. Ejecutar el archivo **movies/bin/console**
-    ```bash
-    php bin/console
     ```
 
 
