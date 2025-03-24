@@ -25,7 +25,8 @@
     symfony help
     ```
 
-## Crear un proyecto
+## Algunos aspectos y comandos de utilidad
+### Crear proyectos
 + Crear un proyecto normal
     ```bash
     symfony new nombre_del_proyecto
@@ -35,11 +36,15 @@
     symfony new nombre_del_proyecto --no-git
     ```
 
+### Estructura de un proyecto
 + Ejecutar la consola de symfony (**movies/bin/console**):
     ```bash
     php bin/console
+    ```
+    o
+    ```bash
     symfony console
-    ```    
+    ```
 + Indicar de se leeran los controladores y se mapearan las rutas:
     ```yml title="movies/config/routes.yaml"
     controllers:
@@ -65,8 +70,13 @@
 + Versión de symfony:
     ```bash
     php bin/console about
+    ```
+    o 
+    ```bash
     symfony console about
     ```
+
+### Ejecución
 + Ejecutar proyecto:
     ```bash
     symfony serve -d
@@ -76,11 +86,90 @@
     symfony serve:stop
     ```
 
+### Controladores
++ Dependencia MakerBundle:
+    + https://symfony.com/bundles/SymfonyMakerBundle/current/index.html
++ Lista de comandos relacionados con make:
+    ```bash
+    symfony console list make
+    ```
++ Crear un controlador
+    ```bash
+    symfony console make:controller
+    ```
+
+### Doctrine
++ Instalar el ORM Doctrine:
+    ```bash
+    composer require doctrine
+    ```
+    o
+    ```bash
+    composer require orm
+    ```
++ Ver los comandos disponibles para trabajar con Doctrine:
+    ```bash
+    symfony console list doctrine
+    ```
+
 
 ## Ejemplo de un proyecto con un CRUD
 1. Creación:
     ```bash
     symfony new movies --no-git
     ```
+2. Instalar dependencia maker:
+    ```bash
+    composer require --dev maker
+    ```
+3. Crear el controlador **MoviesController**
+    ```bash
+    symfony console make:controller
+    ```
+    + name: MoviesController
+4. Instalar el ORM Doctrine
+    ```bash
+    composer require orm
+    ```
+    + Seleccionar: doctrine/orm
 
 
+
+## Primeros pasos en Symfony
++ ✔️ Proyecto final
++ ✔️ ¿Qué vamos a hacer?
++ ✔️ Instalar Symfony CLI y comprobar requerimientos
++ ✔️ Crear nuestro primer proyecto Symfony
++ ✔️ Conociendo la línea de comandos de Symfony
++ ✔️ Servidor de desarrollo local
+## Preparando nuestro proyecto
++ ✔️ Instalar Symfony Maker Bundle
++ ✔️ Creando nuestro primer controlador 
++ Instalar ORM Pack, añadiendo Doctrine a nuestro proyecto
++ Crear nuestra base de datos con Symfony CLI
++ Crear nuestra entidad Movie con todos sus atributos
++ Crear y ejecutar las migraciones para generar nuestra base de datos
++ Añadiendo las entidades Genre y Country
++ Relacionar las entidades Genre y Country con la entidad Movie
++ Fixtures, generando datos ficticios para nuestro entorno de desarrollo
++ Instalar y configurar TailwindCSS
++ Instalar Twig, el motor de vistas de Symfony
+## Listando las películas de la aplicación
++ Obtener las películas con Doctrine
++ Desarrollar el listado de películas con Twig
++ Refactorizar con parciales
++ Instalar paquete iconos FontAwesome
+## Detalle película
++ Obtener una película con Doctrine
++ Detalle de una película con Twig
++ Añadir navegación superior a nuestro layout
+## Alta y edición de películas
++ Formulario para la entidad Movie
++ Método create para representar el formulario de alta de películas
++ Estilizar formulario películas con TailwindCSS
++ Procesar el formulario de alta de películas
++ Formulario para editar películas y actualización de datos
++ Validar nuestro formulario en modo alta y edición
+## Eliminar películas
++ La forma incorrecta de eliminar datos
++ La forma correcta de eliminar datos
