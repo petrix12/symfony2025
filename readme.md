@@ -107,6 +107,12 @@
     + Esta acción crea los siguientes archivos:
         + movies/src/Entity/NombreEntidad.php
         + movies/src/Repository/NombreEntidadRepository.php
++ Ejecutar migraciones:
+    ```bash
+    symfony console make:migration
+    ```
+    + Este comando crea un archivo (VersionYYYYMMDDHHMMSS.php) de migración en **movies/migrations**.
+
 
 ### Doctrine
 + Instalar el ORM Doctrine:
@@ -121,7 +127,18 @@
     ```bash
     symfony console list doctrine
     ```
-
++ Obtener versión de Doctrine:
+    ```bash
+    composer show doctrine/orm | grep versions
+    ```
++ Obtener versión de MySQL del servico que esta corriendo:
+    ```bash
+    mysql -h 127.0.0.1 -P 5306 -u root -p -e "SELECT VERSION();"
+    ```
+    + **Nota**: si es necesario ajusta los valores de:
+        + host: 127.0.0.1
+        + puerto: 5306
+        + usuario: root
 
 ## Ejemplo de un proyecto con un CRUD
 1. Creación:
@@ -165,10 +182,20 @@
 5. Configuración de la cadena de conexión a la base de datos en **.env**:
     ```env title="movies/.env"
     # ...
-    DATABASE_URL="mysql://user:password@127.0.0.1:3306/base_de_datos?serverVersion=10.11.2-MariaDB&charset=utf8mb4"
+    DATABASE_URL="mysql://user:password@127.0.0.1:3306/symfony_movies_app?serverVersion=8.0.41&charset=utf8mb4
     # DATABASE_URL="postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=16&charset=utf8"
     # ...
     ```
+    :::tip Nota
+    Pendiente de configurar correctamente la cadena de conexión:
+        + Usuario: user (en muchos casos root)
+        + Password: password
+        + Host: 127.0.0.1
+        + Puerto: 3306
+        + Base de datos: symfony_movies_app
+        + Versión de la base de datos: 8.0.41   (muy importante)
+        + Juego de caracteres: utf8mb4
+    :::
 6. Crear base de datos:
     ```bash
     symfony console doctrine:database:create
@@ -189,6 +216,15 @@
         + nombre: budget | tipo: integer | nullable: no
         + nombre: poster | tipo: string | longitud: 250 | nullable: no
         + nombre: release_date | tipo: date | nullable: no
+8. Ejecutar migraciones:
+    ```bash
+    symfony console make:migration
+    ```
+    + Archivo de migración creado: **movies/migrations/Version20250325123839.php**.
+9. Modificar archivo de migración:
+    ```php
+    ```
+
 
 ## Primeros pasos en Symfony
 + ✔️ Proyecto final
