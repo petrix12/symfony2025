@@ -86,7 +86,7 @@
     symfony serve:stop
     ```
 
-### Controladores
+### Maker Bundle
 + Dependencia MakerBundle:
     + https://symfony.com/bundles/SymfonyMakerBundle/current/index.html
 + Lista de comandos relacionados con make:
@@ -97,6 +97,16 @@
     ```bash
     symfony console make:controller
     ```
+    + name: NombreControladorController
++ Crear una entidad:
+    ```bash
+    symfony console make:entity
+    ```
+    + name: NombreEntidad   (Siempre en singular y en camelcase)
+    + Definir los nombres de los campos y sus tipos.
+    + Esta acción crea los siguientes archivos:
+        + movies/src/Entity/NombreEntidad.php
+        + movies/src/Repository/NombreEntidadRepository.php
 
 ### Doctrine
 + Instalar el ORM Doctrine:
@@ -167,8 +177,18 @@
     ```bash
     symfony console d:d:c
     ```
-
-
+7. Crear entidad movie:
+    ```bash
+    symfony console make:entity
+    ```
+    + name: Movie
+    + Definir los nombres de los campos y sus tipos:
+        + nombre: title | tipo: string | longitud: 120 | nullable: no
+        + nombre: description | tipo: string | longitud: 2000 | nullable: no
+        + nombre: runtime | tipo: integer | nullable: no
+        + nombre: budget | tipo: integer | nullable: no
+        + nombre: poster | tipo: string | longitud: 250 | nullable: no
+        + nombre: release_date | tipo: date | nullable: no
 
 ## Primeros pasos en Symfony
 + ✔️ Proyecto final
