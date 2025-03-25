@@ -131,7 +131,42 @@
     ```bash
     composer require orm
     ```
-    + Seleccionar: doctrine/orm
+    + Do you want to include Docker configuration from recipes?: No
+    :::tip Modificaciones importantes en el proyecto
+    + Creación de las carpetas 
+        + **movies/migrations**.
+        + **movies/src/Entity**.
+        + **movies/src/Repository**.
+    + Creación del packages **movies/config/packages/doctrine_migrations.yaml**.
+    + Modificación del archivo **.env**:
+        ```env
+        # ...
+        ###> doctrine/doctrine-bundle ###
+        # Format described at https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url
+        # IMPORTANT: You MUST configure your server version, either here or in config/packages/doctrine.yaml
+        #
+        # DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
+        # DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=8.0.32&charset=utf8mb4"
+        # DATABASE_URL="mysql://app:!ChangeMe!@127.0.0.1:3306/app?serverVersion=10.11.2-MariaDB&charset=utf8mb4"
+        DATABASE_URL="postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=16&charset=utf8"
+        ###< doctrine/doctrine-bundle ###        
+        ```
+    :::
+5. Configuración de la cadena de conexión a la base de datos en **.env**:
+    ```env title="movies/.env"
+    # ...
+    DATABASE_URL="mysql://user:password@127.0.0.1:3306/base_de_datos?serverVersion=10.11.2-MariaDB&charset=utf8mb4"
+    # DATABASE_URL="postgresql://app:!ChangeMe!@127.0.0.1:5432/app?serverVersion=16&charset=utf8"
+    # ...
+    ```
+6. Crear base de datos:
+    ```bash
+    symfony console doctrine:database:create
+    ```
+    o
+    ```bash
+    symfony console d:d:c
+    ```
 
 
 
@@ -145,8 +180,8 @@
 ## Preparando nuestro proyecto
 + ✔️ Instalar Symfony Maker Bundle
 + ✔️ Creando nuestro primer controlador 
-+ Instalar ORM Pack, añadiendo Doctrine a nuestro proyecto
-+ Crear nuestra base de datos con Symfony CLI
++ ✔️ Instalar ORM Pack, añadiendo Doctrine a nuestro proyecto
++ ✔️ Crear nuestra base de datos con Symfony CLI
 + Crear nuestra entidad Movie con todos sus atributos
 + Crear y ejecutar las migraciones para generar nuestra base de datos
 + Añadiendo las entidades Genre y Country
