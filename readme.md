@@ -531,7 +531,11 @@
     ```bash
     npm install tailwindcss @tailwindcss/postcss postcss postcss-loader
     ```
-27. Modificar **webpack.config.js** para habilitar la compatibilidad con PostCSS:
+27. Instalar fortawesome:
+    ```bash
+    npm install --save @fortawesome/fontawesome-free
+    ```    
+28. Modificar **webpack.config.js** para habilitar la compatibilidad con PostCSS:
     ```js title="movies/webpack.config.js"
     // ...
     Encore
@@ -539,12 +543,13 @@
         // ...
     ;
     ```
-28. Modificar **movies/assets/styles/app.css** para importar CSS de Tailwind:
+29. Modificar **movies/assets/styles/app.css** para importar CSS de Tailwind:
     ```css title="movies/assets/styles/app.css"
+    @import '@fortawesome/fontawesome-free/css/all.min.css';
     @import "tailwindcss";
     /* ... */
     ```
-29. Crear **postcss.config.mjs** para configurar complementos PostCSS:
+30. Crear **postcss.config.mjs** para configurar complementos PostCSS:
     ```mjs
     export default {
         plugins: {
@@ -552,7 +557,7 @@
         },
     };
     ```
-30. Incluir Tailwind CSS en la plantilla base:
+31. Incluir Tailwind CSS en la plantilla base:
     ```twig title="movies/templates/base.html.twig"
     <!-- ... -->
     {% block stylesheets %}
@@ -560,28 +565,64 @@
     {% endblock %}
     <!-- ... -->
     ```
-31. Ejecutar:
+32. Ejecutar:
     ```bash
     npm run watch
     ```
-32. Crear vista **movies/templates/movies/index.html.twig**:
+33. Crear vista **movies/templates/movies/index.html.twig**:
     ```twig
     ```
-33. Modificar controlador **movies/src/Controller/MoviesController.php**:
+34. Crear vista parcial **movies/templates/partials/movies/facts.html.twig**:
+    ```twig
+    <div class="facts">
+        <span class="release text-sm text-gray-600 bg-gray-200 p-2">
+            <i class="fas fa-calendar-alt"></i>
+            {{ movie.releaseDate|date('d/m/Y') }}
+        </span>
+        <span class="runtime text-sm text-gray-600 bg-gray-200 p-2">
+            <i class="fas fa-clock"></i>
+            {{ movie.runtime }} min
+        </span>
+        <span class="budget text-sm text-gray-600 bg-gray-200 p-2">
+            <i class="fas fa-dollar-sign"></i>
+            {{ movie.budget|number_format(0, ',', '.') }}
+        </span>
+        <span class="country text-sm text-gray-600 bg-gray-200 p-2">
+            <i class="fas fa-globe"></i>
+            {{ movie.country.name }}
+        </span>
+        <span class="genre text-sm text-gray-600 bg-gray-200 p-2">
+            <i class="fas fa-film"></i>
+            {{ movie.genre.name }}
+        </span>
+    </div>    
+    ```
+35. Modificar controlador **movies/src/Controller/MoviesController.php**:
     ```php
-    // ...
+    <?php
+
+    namespace App\Controller;
+
+    use App\Entity\Movie;
+    use Doctrine\ORM\EntityManagerInterface;
     use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
     use Symfony\Component\HttpFoundation\Response;
     use Symfony\Component\Routing\Attribute\Route;
 
     final class MoviesController extends AbstractController
     {
+        public function __construct(private readonly EntityManagerInterface $entityManager) {}
+
         #[Route('/movies', name: 'app_movies')]
         public function index(): Response
         {
-            return $this->render('movies/index.html.twig');
+            $movies = $this->entityManager->getRepository(Movie::class)->findAll();
+            //dd($movies);
+            return $this->render('movies/index.html.twig', [
+                'movies' => $movies
+            ]);
         }
-    }    
+    }   
     ```
 
 
@@ -600,16 +641,16 @@
 + ✔️ Crear nuestra base de datos con Symfony CLI
 + ✔️ Crear nuestra entidad Movie con todos sus atributos
 + ✔️ Crear y ejecutar las migraciones para generar nuestra base de datos
-+ Añadiendo las entidades Genre y Country
-+ Relacionar las entidades Genre y Country con la entidad Movie
-+ Fixtures, generando datos ficticios para nuestro entorno de desarrollo
-+ Instalar y configurar TailwindCSS
-+ Instalar Twig, el motor de vistas de Symfony
++ ✔️ Añadiendo las entidades Genre y Country
++ ✔️ Relacionar las entidades Genre y Country con la entidad Movie
++ ✔️ Fixtures, generando datos ficticios para nuestro entorno de desarrollo
++ ✔️ Instalar y configurar TailwindCSS
++ ✔️ Instalar Twig, el motor de vistas de Symfony
 ## Listando las películas de la aplicación
-+ Obtener las películas con Doctrine
-+ Desarrollar el listado de películas con Twig
-+ Refactorizar con parciales
-+ Instalar paquete iconos FontAwesome
++ ✔️ Obtener las películas con Doctrine
++ ✔️ Desarrollar el listado de películas con Twig
++ ✔️ Refactorizar con parciales
++ ✔️ Instalar paquete iconos FontAwesome
 ## Detalle película
 + Obtener una película con Doctrine
 + Detalle de una película con Twig
