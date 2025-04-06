@@ -27,7 +27,7 @@
 
                 {% for movie in movies %}
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden relative">
-                        <a href="#">
+                        <a href="{{ path('app_movie', {id: movie.id}) }}">
                             <img 
                                 class="w-full h-56 object-cover object-center"
                                 src="{{ movie.poster }}"
@@ -54,7 +54,7 @@
                                 <i class="fas fa-edit"></i> Edit
                             </a>
                             <a 
-                                href="#"
+                                href="{{ path('app_movie', {id: movie.id}) }}"
                                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-r"
                             >
                                 <i class="fas fa-eye"></i> View
