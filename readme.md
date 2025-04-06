@@ -569,10 +569,36 @@
     ```bash
     npm run watch
     ```
+32. Modificar vista **movies/templates/base.html.twig**:
+    ```twig
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>{% block title %}Welcome!{% endblock %}</title>
+            <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+            {% block stylesheets %}
+                {{ encore_entry_link_tags('app') }}
+            {% endblock %}
+
+            {% block javascripts %}
+            {% endblock %}
+        </head>
+        <body>
+            {% block navbar %}
+                {% include 'partials/navbar.html.twig' %}
+            {% endblock %}
+            {% block body %}{% endblock %}
+        </body>
+    </html>    
+    ```
 33. Crear vista **movies/templates/movies/index.html.twig**:
     ```twig
     ```
-34. Crear vista parcial **movies/templates/partials/movies/facts.html.twig**:
+34. Crar vista **movies/templates/partials/navbar.html.twig**:
+    ```twig
+    ```
+35. Crear vista parcial **movies/templates/partials/movies/facts.html.twig**:
     ```twig
     <div class="facts">
         <span class="release text-sm text-gray-600 bg-gray-200 p-2">
@@ -597,34 +623,31 @@
         </span>
     </div>    
     ```
-35. Modificar controlador **movies/src/Controller/MoviesController.php**:
+36. Crear vista **movies/templates/movies/show.html.twig**:
+    ```twig
+    ```
+37. Crear formulario para la entidad Movie:
+    + Instalar dependencia:
+        ```bash
+        composer require form
+        ```
+    + Crear formulario:
+        ```bash
+        symfony console make:form
+        ```
+        +  The name of the form class (e.g. OrangePuppyType): MovieType
+        +  The name of Entity or fully qualified model class name that the new form will be bound to (empty for none): Movie
+        +  **Nota**: esta acción creará el siguiente archivo:
+            +  movies/src/Form/MovieType.php
+38. Modificar controlador **movies/src/Controller/MoviesController.php**:
     ```php
-    <?php
-
-    namespace App\Controller;
-
-    use App\Entity\Movie;
-    use Doctrine\ORM\EntityManagerInterface;
-    use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-    use Symfony\Component\HttpFoundation\Response;
-    use Symfony\Component\Routing\Attribute\Route;
-
-    final class MoviesController extends AbstractController
-    {
-        public function __construct(private readonly EntityManagerInterface $entityManager) {}
-
-        #[Route('/movies', name: 'app_movies')]
-        public function index(): Response
-        {
-            $movies = $this->entityManager->getRepository(Movie::class)->findAll();
-            //dd($movies);
-            return $this->render('movies/index.html.twig', [
-                'movies' => $movies
-            ]);
-        }
-    }   
     ```
 
+
+
+## --------------
+symfony serve -d
+npm run watch
 
 
 ## Primeros pasos en Symfony
@@ -652,9 +675,9 @@
 + ✔️ Refactorizar con parciales
 + ✔️ Instalar paquete iconos FontAwesome
 ## Detalle película
-+ Obtener una película con Doctrine
-+ Detalle de una película con Twig
-+ Añadir navegación superior a nuestro layout
++ ✔️ Obtener una película con Doctrine
++ ✔️ Detalle de una película con Twig
++ ✔️ Añadir navegación superior a nuestro layout
 ## Alta y edición de películas
 + Formulario para la entidad Movie
 + Método create para representar el formulario de alta de películas
