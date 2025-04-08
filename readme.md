@@ -5,7 +5,10 @@
 + https://www.cursosdesarrolloweb.es/course/curso-symfony-6-principiantes
 + https://www.udemy.com/cart/subscribe/course/5852278
 + https://www.youtube.com/playlist?list=PLkVpKYNT_U9fdmk2QgRq0e_NNeommcu3m
++ https://www.youtube.com/playlist?list=PL3h4DpIhmh8en8UG08ONGRlNhdBLZsh38
 
+## Documentación
++ https://symfony.com/doc/current/index.html
 
 ## Instalar Symfony CLI
 + Para instalar Symfony CLI seguir los pasos indicados en:
@@ -639,7 +642,50 @@
         +  The name of Entity or fully qualified model class name that the new form will be bound to (empty for none): Movie
         +  **Nota**: esta acción creará el siguiente archivo:
             +  movies/src/Form/MovieType.php
-38. Modificar controlador **movies/src/Controller/MoviesController.php**:
+38. Modificar el formulario **movies/src/Form/MovieType.php**:
+    ```php
+    ```
+39. Modificar la entidad Genre:
+    ```php
+    // ...
+    class Genre
+    {
+        // ...
+        public function __toString(): string {
+            return $this->name;
+        }
+    }
+    ```
+40. Modificar la entidad Country:
+    ```php
+    // ...
+    class Country
+    {
+        // ...
+        public function __toString(): string {
+            return $this->name;
+        }
+    }
+    ```
+41. Modificar la entidad Movie:
+    ```php
+    // ...
+    class Movie
+    {
+        // ...
+        public function setReleaseDate(?\DateTimeInterface $release_date): static
+        {
+            $this->release_date = $release_date;
+
+            return $this;
+        }
+        // ...
+    }
+    ```
+42. Crear vista **movies/templates/movies/create.html.twig**:
+    ```twig
+    ```
+43. Modificar controlador **movies/src/Controller/MoviesController.php**:
     ```php
     ```
 
@@ -651,40 +697,40 @@ npm run watch
 
 
 ## Primeros pasos en Symfony
-+ ✔️ Proyecto final
-+ ✔️ ¿Qué vamos a hacer?
-+ ✔️ Instalar Symfony CLI y comprobar requerimientos
-+ ✔️ Crear nuestro primer proyecto Symfony
-+ ✔️ Conociendo la línea de comandos de Symfony
-+ ✔️ Servidor de desarrollo local
++ ✔️ (1) Proyecto final
++ ✔️ (3) ¿Qué vamos a hacer?
++ ✔️ (4) Instalar Symfony CLI y comprobar requerimientos
++ ✔️ (4) Crear nuestro primer proyecto Symfony
++ ✔️ (3) Conociendo la línea de comandos de Symfony
++ ✔️ (2) Servidor de desarrollo local
 ## Preparando nuestro proyecto
-+ ✔️ Instalar Symfony Maker Bundle
-+ ✔️ Creando nuestro primer controlador 
-+ ✔️ Instalar ORM Pack, añadiendo Doctrine a nuestro proyecto
-+ ✔️ Crear nuestra base de datos con Symfony CLI
-+ ✔️ Crear nuestra entidad Movie con todos sus atributos
-+ ✔️ Crear y ejecutar las migraciones para generar nuestra base de datos
-+ ✔️ Añadiendo las entidades Genre y Country
-+ ✔️ Relacionar las entidades Genre y Country con la entidad Movie
-+ ✔️ Fixtures, generando datos ficticios para nuestro entorno de desarrollo
-+ ✔️ Instalar y configurar TailwindCSS
-+ ✔️ Instalar Twig, el motor de vistas de Symfony
++ ✔️ (3) Instalar Symfony Maker Bundle
++ ✔️ (5) Creando nuestro primer controlador 
++ ✔️ (4) Instalar ORM Pack, añadiendo Doctrine a nuestro proyecto
++ ✔️ (3) Crear nuestra base de datos con Symfony CLI
++ ✔️ (8) Crear nuestra entidad Movie con todos sus atributos
++ ✔️ (5) Crear y ejecutar las migraciones para generar nuestra base de datos
++ ✔️ (3) Añadiendo las entidades Genre y Country
++ ✔️ (7) Relacionar las entidades Genre y Country con la entidad Movie
++ ✔️ (11) Fixtures, generando datos ficticios para nuestro entorno de desarrollo
++ ✔️ (6) Instalar y configurar TailwindCSS
++ ✔️ (6) Instalar Twig, el motor de vistas de Symfony
 ## Listando las películas de la aplicación
-+ ✔️ Obtener las películas con Doctrine
-+ ✔️ Desarrollar el listado de películas con Twig
-+ ✔️ Refactorizar con parciales
-+ ✔️ Instalar paquete iconos FontAwesome
++ ✔️ (4) Obtener las películas con Doctrine
++ ✔️ (11) Desarrollar el listado de películas con Twig
++ ✔️ (2) Refactorizar con parciales
++ ✔️ (1) Instalar paquete iconos FontAwesome
 ## Detalle película
-+ ✔️ Obtener una película con Doctrine
-+ ✔️ Detalle de una película con Twig
-+ ✔️ Añadir navegación superior a nuestro layout
++ ✔️ (5) Obtener una película con Doctrine
++ ✔️ (3) Detalle de una película con Twig
++ ✔️ (2) Añadir navegación superior a nuestro layout
 ## Alta y edición de películas
-+ Formulario para la entidad Movie
-+ Método create para representar el formulario de alta de películas
-+ Estilizar formulario películas con TailwindCSS
-+ Procesar el formulario de alta de películas
-+ Formulario para editar películas y actualización de datos
-+ Validar nuestro formulario en modo alta y edición
++ ✔️ (3) Formulario para la entidad Movie
++ ✔️ (6) Método create para representar el formulario de alta de películas
++ ✔️ (5) Estilizar formulario películas con TailwindCSS
++ ✔️ (3) Procesar el formulario de alta de películas
++ (5) Formulario para editar películas y actualización de datos
++ (8) Validar nuestro formulario en modo alta y edición
 ## Eliminar películas
-+ La forma incorrecta de eliminar datos
-+ La forma correcta de eliminar datos
++ (4) La forma incorrecta de eliminar datos
++ (6) La forma correcta de eliminar datos
