@@ -629,7 +629,10 @@
 36. Crear vista **movies/templates/movies/show.html.twig**:
     ```twig
     ```
-37. Crear formulario para la entidad Movie:
+37. Crear vista **movies/templates/movies/edit.html.twig**:
+    ```twig
+    ```
+38. Crear formulario para la entidad Movie:
     + Instalar dependencia:
         ```bash
         composer require form
@@ -642,10 +645,10 @@
         +  The name of Entity or fully qualified model class name that the new form will be bound to (empty for none): Movie
         +  **Nota**: esta acción creará el siguiente archivo:
             +  movies/src/Form/MovieType.php
-38. Modificar el formulario **movies/src/Form/MovieType.php**:
+39. Modificar el formulario **movies/src/Form/MovieType.php**:
     ```php
     ```
-39. Modificar la entidad Genre:
+40. Modificar la entidad Genre:
     ```php
     // ...
     class Genre
@@ -656,7 +659,7 @@
         }
     }
     ```
-40. Modificar la entidad Country:
+41. Modificar la entidad Country:
     ```php
     // ...
     class Country
@@ -667,7 +670,7 @@
         }
     }
     ```
-41. Modificar la entidad Movie:
+42. Modificar la entidad Movie:
     ```php
     // ...
     class Movie
@@ -682,10 +685,10 @@
         // ...
     }
     ```
-42. Crear vista **movies/templates/movies/create.html.twig**:
+43. Crear vista **movies/templates/movies/create.html.twig**:
     ```twig
     ```
-43. Modificar controlador **movies/src/Controller/MoviesController.php**:
+44. Modificar controlador **movies/src/Controller/MoviesController.php**:
     ```php
     ```
 
@@ -729,7 +732,7 @@ npm run watch
 + ✔️ (6) Método create para representar el formulario de alta de películas
 + ✔️ (5) Estilizar formulario películas con TailwindCSS
 + ✔️ (3) Procesar el formulario de alta de películas
-+ (5) Formulario para editar películas y actualización de datos
++ ✔️ (5) Formulario para editar películas y actualización de datos
 + (8) Validar nuestro formulario en modo alta y edición
 ## Eliminar películas
 + (4) La forma incorrecta de eliminar datos
